@@ -1,0 +1,67 @@
+import React, { useEffect } from 'react';
+import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { WishlistProvider } from '@/context/WishlistContext';
+import { COLORS } from '@/constants/theme';
+
+export {
+  // Catch any errors thrown by the Layout component.
+  ErrorBoundary,
+} from 'expo-router';
+
+// Prevent the splash screen from auto-hiding before asset loading is complete.
+SplashScreen.preventAutoHideAsync().catch(() => {
+  /* ignore */
+});
+
+export default function RootLayout() {
+  useEffect(() => {
+    // Hide splash screen smoothly
+    SplashScreen.hideAsync().catch(() => {});
+  }, []);
+
+  return (
+    <SafeAreaProvider>
+      <WishlistProvider>
+        <StatusBar style="dark" />
+        <Stack
+          screenOptions={{
+            headerStyle: {
+              backgroundColor: COLORS.surface,
+            },
+            headerTintColor: COLORS.primary,
+            headerTitleStyle: {
+              fontWeight: '700',
+              color: COLORS.textPrimary,
+            },
+            contentStyle: {
+              backgroundColor: COLORS.background,
+            },
+          }}
+        >
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="destination/[id]"
+            options={{
+              headerShown: false,
+              animation: 'slide_from_right',
+            }}
+          />
+          <Stack.Screen
+            name="modal"
+            options={{
+              presentation: 'modal',
+              title: 'About Yatra',
+              headerTitleStyle: {
+                fontWeight: '800',
+                color: COLORS.primary,
+              },
+            }}
+          />
+        </Stack>
+      </WishlistProvider>
+    </SafeAreaProvider>
+  );
+}
