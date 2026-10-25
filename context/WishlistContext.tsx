@@ -11,7 +11,7 @@ interface WishlistContextType {
   toggleWishlist: (id: string) => Promise<boolean>;
   addToWishlist: (id: string) => Promise<void>;
   removeFromWishlist: (id: string) => Promise<void>;
-  clearWishlist: Promise<void> | (() => Promise<void>);
+  clearWishlist: () => Promise<void>;
 }
 
 const WishlistContext = createContext<WishlistContextType | undefined>(undefined);

@@ -36,11 +36,9 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
   // --- FEATURED VARIANT (Large Hero Card) ---
   if (variant === 'featured') {
     return (
-      <TouchableOpacity
-        style={[styles.featuredContainer, SHADOWS.elevated]}
+      <Pressable
+        style={({ pressed }) => [styles.featuredContainer, SHADOWS.elevated, pressed && { opacity: 0.92 }]}
         onPress={onPress}
-        activeOpacity={0.92}
-        accessibilityRole="button"
         accessibilityLabel={`View details for ${destination.name}, ${destination.state}`}
       >
         <View style={styles.featuredImageWrapper}>
@@ -115,18 +113,16 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
             </View>
           </View>
         </View>
-      </TouchableOpacity>
+      </Pressable>
     );
   }
 
   // --- HORIZONTAL / COMPACT VARIANT ---
   if (variant === 'horizontal') {
     return (
-      <TouchableOpacity
-        style={[styles.horizontalContainer, SHADOWS.card]}
+      <Pressable
+        style={({ pressed }) => [styles.horizontalContainer, SHADOWS.card, pressed && { opacity: 0.88 }]}
         onPress={onPress}
-        activeOpacity={0.88}
-        accessibilityRole="button"
         accessibilityLabel={`View details for ${destination.name}`}
       >
         <View style={styles.horizontalImageWrapper}>
@@ -182,17 +178,15 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
             <Text style={styles.budgetCompactText}>{destination.approximateBudget}</Text>
           </View>
         </View>
-      </TouchableOpacity>
+      </Pressable>
     );
   }
 
   // --- STANDARD CARD VARIANT (Default Grid / Explorer) ---
   return (
-    <TouchableOpacity
-      style={[styles.cardContainer, SHADOWS.card]}
+    <Pressable
+      style={({ pressed }) => [styles.cardContainer, SHADOWS.card, pressed && { opacity: 0.9 }]}
       onPress={onPress}
-      activeOpacity={0.9}
-      accessibilityRole="button"
       accessibilityLabel={`View details for ${destination.name}, ${destination.state}`}
     >
       <View style={styles.cardImageWrapper}>
@@ -273,7 +267,7 @@ export const DestinationCard: React.FC<DestinationCardProps> = ({
           </View>
         </View>
       </View>
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 

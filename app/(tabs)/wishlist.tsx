@@ -11,7 +11,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 
-import { COLORS, RADIUS, SHADOWS, SPACING } from '@/constants/theme';
+import { COLORS, RADIUS, SPACING } from '@/constants/theme';
 import { useWishlist } from '@/hooks/useWishlist';
 import { DestinationCard } from '@/components/DestinationCard';
 import { EmptyState } from '@/components/EmptyState';

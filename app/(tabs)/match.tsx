@@ -77,6 +77,7 @@ export default function SmartMatchScreen() {
 
   const [results, setResults] = useState<MatchResult[] | null>(null);
   const [hasCalculated, setHasCalculated] = useState(false);
+  const [imageErrors, setImageErrors] = useState<Record<string, boolean>>({});
 
   // Load saved preferences on mount if available
   useEffect(() => {
@@ -166,11 +167,19 @@ export default function SmartMatchScreen() {
                     onPress={() => router.push(`/destination/${destination.id}`)}
                     activeOpacity={0.9}
                   >
-                    <Image
-                      source={{ uri: destination.heroImage }}
-                      style={styles.resultImage}
-                      resizeMode="cover"
-                    />
+                    {imageErrors[destination.id] ? (
+                      <View style={[styles.resultImage, styles.resultImageFallback]}>
+                        <Ionicons name="image-outline" size={36} color={COLORS.primaryMedium} />
+                        <Text style={styles.fallbackText}>{destination.name}</Text>
+                      </View>
+                    ) : (
+                      <Image
+                        source={{ uri: destination.heroImage }}
+                        style={styles.resultImage}
+                        resizeMode="cover"
+                        onError={() => setImageErrors((current) => ({ ...current, [destination.id]: true }))}
+                      />
+                    )}
                     <LinearGradient
                       colors={['transparent', 'rgba(11, 37, 24, 0.75)']}
                       style={styles.imageGradient}
@@ -486,6 +495,18 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
+  },
+  resultImageFallback: {
+    backgroundColor: COLORS.surfaceSubtle,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  fallbackText: {
+    marginTop: SPACING.xs,
+    fontSize: 12,
+    fontWeight: '600',
+    color: COLORS.textSecondary,
+    textAlign: 'center',
   },
   imageGradient: {
     position: 'absolute',

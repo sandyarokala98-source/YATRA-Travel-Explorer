@@ -18,7 +18,7 @@ Travelers exploring India often struggle with fragmented information:
 4. Trip ideas and bookmarks are easily lost without local, reliable offline-friendly persistence.
 
 **YATRA** solves this through a unified mobile experience featuring:
-* A curated dataset of **13 Indian destinations** across **Beaches, Mountains, Heritage, and Adventure**.
+* A curated dataset of **15 Indian destinations** across **Beaches, Mountains, Heritage, and Adventure**.
 * A transparent, multi-factor **Smart Destination Matcher**.
 * Direct **Open-Meteo live weather sync** with WMO atmospheric interpretation and travel advice.
 * One-touch **Google Maps external link navigation**.
@@ -79,12 +79,12 @@ Travelers exploring India often struggle with fragmented information:
 
 | Layer | Technology | Version | Purpose |
 | :--- | :--- | :--- | :--- |
-| **Framework** | [React Native](https://reactnative.dev/) | `0.88.0` | Cross-platform native mobile runtime |
-| **Platform** | [Expo SDK](https://expo.dev/) | `~58.0.17` | Toolchain, development server & native modules |
-| **Routing** | [Expo Router](https://docs.expo.dev/router/introduction/) | `~58.0.25` | File-based navigation (Tabs + Stack) |
+| **Framework** | [React Native](https://reactnative.dev/) | `0.86.3` | Cross-platform native mobile runtime |
+| **Platform** | [Expo SDK](https://expo.dev/) | `57.0.31` | Toolchain, development server & native modules |
+| **Routing** | [Expo Router](https://docs.expo.dev/router/introduction/) | `~57.0.29` | File-based navigation (Tabs + Stack) |
 | **Language** | [TypeScript](https://www.typescriptlang.org/) | `~6.0.3` | Type safety and documentation integrity |
 | **Storage** | [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) | `2.2.0` | Local persistent storage |
-| **Gradients** | [Expo Linear Gradient](https://docs.expo.dev/versions/latest/sdk/linear-gradient/) | `~58.0.3` | Hero overlays and aesthetic depth |
+| **Gradients** | [Expo Linear Gradient](https://docs.expo.dev/versions/latest/sdk/linear-gradient/) | `~57.0.2` | Hero overlays and aesthetic depth |
 | **Icons** | [@expo/vector-icons](https://icons.expo.fyi/) | `^15.0.2` | Ionicons & Feather glyphs |
 | **Weather** | [Open-Meteo REST API](https://open-meteo.com/) | v1 | Live temperature, humidity, wind & WMO codes |
 | **Maps** | `Linking` API | Built-in | Google Maps intent and browser fallback |
@@ -115,7 +115,7 @@ YATRA/
 │   ├── MatchOptionGroup.tsx      # Multi-choice preference chips
 │   └── EmptyState.tsx            # Universal friendly empty state
 ├── data/
-│   └── destinations.ts           # Curated 13-destination local dataset
+│   └── destinations.ts           # Curated 15-destination local dataset
 ├── types/
 │   └── destination.ts           # Strict TypeScript contracts & interfaces
 ├── services/
@@ -139,7 +139,7 @@ YATRA/
 ## 5. Getting Started & Installation
 
 ### Prerequisites
-* [Node.js](https://nodejs.org/) (v18 or higher recommended; developed on Node v24)
+* [Node.js](https://nodejs.org/) (22.13 or newer for Expo SDK 57)
 * [Expo Go](https://expo.dev/go) app installed on your physical mobile device (Android or iOS), or an Android/iOS emulator.
 
 ### 1. Clone the Repository
@@ -219,20 +219,19 @@ Scores are normalized to a 0–100% scale. Destinations scoring $\ge 80\%$ are h
 
 | Feature | Test Case | Status |
 | :--- | :--- | :--- |
-| **Dependencies** | Installed clean SDK 58 compatible modules | ✅ PASS |
-| **TypeScript** | Strict typecheck (`npx tsc --noEmit`) with 0 errors | ✅ PASS |
-| **Doctor Check** | `npx expo-doctor` 20/20 diagnostics passed | ✅ PASS |
-| **Metro Bundler** | Full static bundle export across all 10 routes | ✅ PASS |
-| **Destinations Data** | 13 destinations across Beaches, Mountains, Heritage, Adventure | ✅ PASS |
-| **Search Function** | Case-insensitive search, whitespace trim, clear button | ✅ PASS |
-| **Category Filter** | Filter chips with badge counts, co-operates with search | ✅ PASS |
-| **Destination Details** | Hero photography, stats row, full description, attractions | ✅ PASS |
-| **Invalid Route** | Friendly 404 / destination not found screen without crash | ✅ PASS |
-| **Wishlist Persistence** | Immediate UI response, deduplication, survives app restarts | ✅ PASS |
-| **Smart Match Quiz** | 5 preference groups, deterministic scoring, match explanations | ✅ PASS |
-| **Live Weather** | Live Open-Meteo temperature, humidity, wind, and advice note | ✅ PASS |
-| **Google Maps Link** | Deep link to Google Maps with destination coordinates | ✅ PASS |
-| **Image Fallbacks** | Graceful fallback placeholder when images fail to load | ✅ PASS |
+| **Expo Go compatibility** | SDK 57 project for the SDK 57 Android Expo Go release | ✅ ALIGNED |
+| **Dependencies** | `npx expo install --check` | ✅ PASS |
+| **TypeScript** | `npx tsc --noEmit` | ✅ PASS |
+| **Expo Doctor** | 21 diagnostics | ✅ PASS |
+| **Android bundle** | `npx expo export --platform android` | ✅ PASS |
+| **Web bundle** | `npx expo export --platform web` (10 static routes) | ✅ PASS |
+| **Destination data** | 15 destinations: Beaches 3, Mountains 4, Heritage 4, Adventure 4 | ✅ VERIFIED |
+| **Interactive web runtime** | Search, category filters, destination details, live weather, wishlist sync and reload persistence, Smart Match | ✅ VERIFIED IN BROWSER |
+| **Physical Android device** | Expo Go behavior | ⏳ NOT TESTED |
+
+### Expo Go SDK compatibility
+
+Expo Go contains one Expo SDK runtime, so the project SDK and installed Expo Go SDK must match. This project targets SDK 57 for the installed Expo Go 57.0.9. An SDK 57 client cannot load an SDK 58 project. Expo's [Android download page](https://expo.dev/go) currently offers SDK 58 as the latest Expo Go, while the [version-mismatch guide](https://docs.expo.dev/troubleshooting/expo-go-version-mismatch/) explains that Android users can install the Expo Go build for a specific SDK. If Expo Go updates from the Play Store to SDK 58, install the SDK 57 client from expo.dev/go or upgrade this project before opening it. For SDK 57, the compatible framework versions are React Native 0.86 and React 19.2.3 ([SDK 57 reference](https://docs.expo.dev/versions/v57.0.0/)).
 
 ---
 

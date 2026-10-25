@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 export function useClientOnlyValue<S, C>(server: S, client: C): S | C {
   const [value, setValue] = useState<S | C>(server);
   useEffect(() => {
+    // This intentional post-hydration update replaces the server value with the web-only value.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setValue(client);
   }, [client]);
 

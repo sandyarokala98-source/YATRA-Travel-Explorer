@@ -6,7 +6,6 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
-  Platform,
   Alert,
 } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';

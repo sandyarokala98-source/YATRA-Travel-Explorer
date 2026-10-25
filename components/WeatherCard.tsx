@@ -44,6 +44,8 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
   );
 
   useEffect(() => {
+    // The effect starts a network request; fetchWeather owns the loading state for that request.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchWeather(false);
   }, [fetchWeather]);
 

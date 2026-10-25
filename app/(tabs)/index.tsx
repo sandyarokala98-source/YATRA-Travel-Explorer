@@ -13,7 +13,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import { COLORS, RADIUS, SHADOWS, SPACING } from '@/constants/theme';
 import { DESTINATIONS } from '@/data/destinations';
-import { Destination } from '@/types/destination';
 import { SearchBar } from '@/components/SearchBar';
 import { CategoryFilter, CategoryOption } from '@/components/CategoryFilter';
 import { DestinationCard } from '@/components/DestinationCard';

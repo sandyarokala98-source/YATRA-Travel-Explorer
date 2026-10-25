@@ -5,7 +5,6 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Linking,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -13,10 +12,6 @@ import { COLORS, RADIUS, SHADOWS, SPACING } from '@/constants/theme';
 
 export default function AboutModalScreen() {
   const router = useRouter();
-
-  const openUrl = (url: string) => {
-    Linking.openURL(url).catch(() => {});
-  };
 
   return (
     <ScrollView
@@ -42,7 +37,7 @@ export default function AboutModalScreen() {
         <Text style={styles.paragraph}>
           <Text style={styles.boldText}>YATRA</Text> is a premium travel discovery application crafted specifically for the{' '}
           <Text style={styles.boldText}>GDGC VNRVJIET App Development Domain Volunteer Recruitment Assignment</Text>.
-          It celebrates India's extraordinary geographic and cultural diversity—from sun-soaked shores and alpine peaks to ancient monuments and adrenaline adventures.
+          It celebrates India&apos;s extraordinary geographic and cultural diversity—from sun-soaked shores and alpine peaks to ancient monuments and adrenaline adventures.
         </Text>
       </View>
 

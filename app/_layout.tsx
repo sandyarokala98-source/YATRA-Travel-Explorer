@@ -1,5 +1,7 @@
+import 'react-native-reanimated';
 import React, { useEffect } from 'react';
 import { Stack } from 'expo-router';
+import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -11,16 +13,35 @@ export {
   ErrorBoundary,
 } from 'expo-router';
 
+export const unstable_settings = {
+  anchor: '(tabs)',
+};
+
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync().catch(() => {
   /* ignore */
 });
 
 export default function RootLayout() {
+  const [loaded, error] = useFonts({
+    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+  });
+
   useEffect(() => {
-    // Hide splash screen smoothly
-    SplashScreen.hideAsync().catch(() => {});
-  }, []);
+    if (error) {
+      console.warn('Font loading error, continuing with system fonts:', error);
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync().catch(() => {});
+    }
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+  }
 
   return (
     <SafeAreaProvider>
