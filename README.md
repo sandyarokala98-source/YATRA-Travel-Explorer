@@ -144,8 +144,8 @@ YATRA/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/gdgc-yatra-travel-explorer.git
-cd gdgc-yatra-travel-explorer
+git clone https://github.com/sandyarokala98-source/YATRA-Travel-Explorer.git
+cd YATRA-Travel-Explorer
 ```
 
 ### 2. Install Compatible Dependencies
@@ -227,25 +227,38 @@ Scores are normalized to a 0–100% scale. Destinations scoring $\ge 80\%$ are h
 | **Web bundle** | `npx expo export --platform web` (10 static routes) | ✅ PASS |
 | **Destination data** | 15 destinations: Beaches 3, Mountains 4, Heritage 4, Adventure 4 | ✅ VERIFIED |
 | **Interactive web runtime** | Search, category filters, destination details, live weather, wishlist sync and reload persistence, Smart Match | ✅ VERIFIED IN BROWSER |
-| **Physical Android device** | Expo Go behavior | ⏳ NOT TESTED |
+| **Physical Android installation** | User confirms YATRA is installed; supplied screenshots show Home, destination details, Smart Match, and About screens | ✅ INSTALLED / SCREENS CAPTURED |
+| **Physical Android feature interactions** | Individual search, filter, weather, Maps, and wishlist-persistence behavior | ⏳ NOT ESTABLISHED BY THE SUPPLIED SCREENSHOTS |
 
 ### Expo Go SDK compatibility
 
-Expo Go contains one Expo SDK runtime, so the project SDK and installed Expo Go SDK must match. This project targets SDK 57 for the installed Expo Go 57.0.9. An SDK 57 client cannot load an SDK 58 project. Expo's [Android download page](https://expo.dev/go) currently offers SDK 58 as the latest Expo Go, while the [version-mismatch guide](https://docs.expo.dev/troubleshooting/expo-go-version-mismatch/) explains that Android users can install the Expo Go build for a specific SDK. If Expo Go updates from the Play Store to SDK 58, install the SDK 57 client from expo.dev/go or upgrade this project before opening it. For SDK 57, the compatible framework versions are React Native 0.86 and React 19.2.3 ([SDK 57 reference](https://docs.expo.dev/versions/v57.0.0/)).
+Expo Go contains one Expo SDK runtime, so the project SDK and installed Expo Go SDK must match. This project targets SDK 57 (`expo` 57.0.31). For Android, use the matching SDK build selected from [expo.dev/go](https://expo.dev/go); see Expo's [version-mismatch guide](https://docs.expo.dev/troubleshooting/expo-go-version-mismatch/) if the installed client does not match. The SDK 57 reference lists React Native 0.86 and React 19.2.3 as its compatible framework versions ([SDK 57 reference](https://docs.expo.dev/versions/v57.0.0/)).
 
 ---
 
 ## 9. Screenshots
 
-| Explore / Home Screen | Category & Search | Destination Details |
-| :---: | :---: | :---: |
-| *(Hero Carousel & Categories)* | *(Combined Filtering & Badges)* | *(Weather, Stats & Attractions)* |
+These are actual captures supplied from the running Android app. They show rendered screens and visible states; screenshots alone do not establish that every interaction or persistence behavior was tested.
 
-| Smart Destination Matcher | Match Results & Reasons | Saved Wishlist |
-| :---: | :---: | :---: |
-| *(Interactive 5-question quiz)* | *(Ranked Matches with % & tags)* | *(Persisted Saved Escapes)* |
+### Home / Explore
 
-*(Screenshots can be captured directly from your Expo Go device or emulator and added to `assets/screenshots/`)*.
+![YATRA Home and Explore screen](assets/screenshots/home.png)
+
+### Destination details
+
+![YATRA destination details screen](assets/screenshots/destination-details.png)
+
+![YATRA destination attractions and Google Maps link](assets/screenshots/destination-attractions.png)
+
+### Smart Match
+
+![YATRA Smart Match preferences screen](assets/screenshots/smart-match.png)
+
+### About YATRA
+
+![YATRA About screen](assets/screenshots/about-yatra.png)
+
+**Wishlist screenshot:** A Wishlist screen capture was not included with the supplied images, so no Wishlist screenshot is shown here.
 
 ---
 
@@ -258,25 +271,22 @@ Expo Go contains one Expo SDK runtime, so the project SDK and installed Expo Go 
 
 ---
 
-## 11. Git Commands for GitHub Submission
+## 11. GitHub Repository
 
-To publish this project to GitHub under `gdgc-yatra-travel-explorer`:
+Clone the existing repository:
 
 ```bash
-# 1. Add all project files
-git add .
+git clone https://github.com/sandyarokala98-source/YATRA-Travel-Explorer.git
+cd YATRA-Travel-Explorer
+```
 
-# 2. Commit the verified application
-git commit -m "feat: complete YATRA Travel Explorer app for GDGC recruitment"
+To commit and push documentation and screenshots on the existing `main` branch:
 
-# 3. Rename branch to main (if not already main)
-git branch -M main
-
-# 4. Link your remote GitHub repository (replace with your repo URL)
-git remote add origin https://github.com/YOUR_GITHUB_USERNAME/gdgc-yatra-travel-explorer.git
-
-# 5. Push to GitHub
-git push -u origin main
+```bash
+git status
+git add README.md assets/screenshots/
+git commit -m "docs: add app screenshots and improve README"
+git push origin main
 ```
 
 ---
